@@ -5,15 +5,31 @@ using UnityEngine;
 public class Player : MonoBehaviour
 {
     public GameObject gmObject;
+    public AudioSource jumpSound;
 
     private GameManager gmScript;
     private Vector3 direction;
     private float gravity = -9.8f;
     private float jumpForce = 4f;
+    private SpriteRenderer spriteRenderer;
+    public Sprite[] spriteArray;
+    private int spriteIndex; 
 
     private void Start()
     {
+        spriteRenderer = GetComponent<SpriteRenderer>();
         gmScript = gmObject.GetComponent<GameManager>();
+        InvokeRepeating(nameof(AnimateSprite), 0.15f, 0.15f);
+    }
+
+    private void AnimateSprite()
+    {
+        spriteIndex++;
+        if(spriteIndex >= spriteArray.Length)
+        {
+            spriteIndex = 0;
+        }
+        spriteRenderer.sprite = spriteArray[spriteIndex];
     }
 
     private void OnEnable()
@@ -24,7 +40,7 @@ public class Player : MonoBehaviour
         direction = Vector3.zero;
     }
 
-    void Update()
+    private void Update()
     {
         if(transform.position.y < -5)
         {
@@ -33,6 +49,7 @@ public class Player : MonoBehaviour
 
         if(Input.GetKeyDown(KeyCode.Space))
         {
+            jumpSound.Play();
             direction = Vector3.up * jumpForce;
         }
 

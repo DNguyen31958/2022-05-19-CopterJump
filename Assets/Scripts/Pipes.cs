@@ -4,18 +4,18 @@ using UnityEngine;
 
 public class Pipes : MonoBehaviour
 {
-    private float speed = 6f;
-    private float leftEdge;
+    private float speed = 4.2f;
+    private GameObject leftEdge;
 
     private void Start()
     {
-        leftEdge = Camera.main.ScreenToWorldPoint(Vector3.zero).x - 1f;
+        leftEdge = GameObject.FindGameObjectWithTag("LeftEdge");
     }
 
     private void Update()
     {
         transform.position += Vector3.left * speed * Time.deltaTime;
-        if (transform.position.x < leftEdge)
+        if (transform.position.x <= leftEdge.transform.position.x)
         {
             Destroy(gameObject);
         }

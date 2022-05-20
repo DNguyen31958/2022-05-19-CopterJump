@@ -6,7 +6,7 @@ public class Spawner : MonoBehaviour
 {
     public GameObject pipePrefab;
 
-    private float spawnRate = 1f;
+    private float spawnRate = 1.5f;
     private float minHeight = -2f;
     private float maxHeight = 2f;
 

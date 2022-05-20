@@ -5,15 +5,16 @@ using TMPro;
 
 public class GameManager : MonoBehaviour
 {
-    public Player player;
     public TMP_Text scoreText;
     public GameObject gameOver;
     public GameObject playButton;
 
+    private Player player;
     private int score;
 
-    private void Awake()
+    private void Start()
     {
+        player = GameObject.FindGameObjectWithTag("Player").GetComponent<Player>();
         Pause();
     }
 

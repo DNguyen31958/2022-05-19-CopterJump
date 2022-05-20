@@ -8,7 +8,7 @@ public class Parallax : MonoBehaviour
 
     private MeshRenderer meshRenderer;
 
-    private void Awake()
+    private void Start()
     {
         meshRenderer = GetComponent<MeshRenderer>();
     }
